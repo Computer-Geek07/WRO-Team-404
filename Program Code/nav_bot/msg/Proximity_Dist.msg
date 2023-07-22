@@ -1,0 +1,2 @@
+int8 prox_dist_l
+int8 prox_dist_r
