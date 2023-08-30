@@ -1,0 +1,3 @@
+bool blue_color
+bool green_color
+bool white_color
