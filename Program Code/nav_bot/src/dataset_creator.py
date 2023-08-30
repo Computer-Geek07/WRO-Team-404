@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-This script is used to open a cam and start publishing the frames to a ROS topic.
+This script is used to create a dataset by opening up a video file and publishing the frames to a ROS topic.
 """
 
 import rospy
@@ -10,6 +10,11 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
 VISUALIZE = False
+# VID_FIL_LOC = "/home/pi/catkin_ws/src/WRO-matrix-testing/nav_bot/data/arena_01.mp4"
+# VID_FIL_LOC = "/home/jatinvira/catkin_ws/src/WRO-matrix-testing/nav_bot/data/arena_02.mp4"
+# VID_FIL_LOC = "/home/jatinvira/catkin_ws/src/WRO-matrix-testing/nav_bot/data/arena_03.mp4"
+# VID_FIL_LOC = "/home/jatinvira/catkin_ws/src/WRO-matrix-testing/nav_bot/data/arena_04.mp4"
+VID_FIL_LOC = "/home/jatinvira/catkin_ws/src/WRO-matrix-testing/nav_bot/data/arena_05.mp4"
 FPS = 30
 
 
@@ -26,7 +31,7 @@ def dataset_creator():
     print("Dataset Creator Node Started")
 
     # Open the video file at the specified location
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(VID_FIL_LOC)
 
     while not rospy.is_shutdown():
         # Read the frame

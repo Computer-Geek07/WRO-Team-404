@@ -15,10 +15,10 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from nav_bot.msg import BoundingBox_Params
 
-VISUALIZE = True
+VISUALIZE = False
 if VISUALIZE:
     DRAW_BBOX = True
-    DRAW_CONT = True
+    DRAW_CONT = False
 else:
     DRAW_BBOX = False
     DRAW_CONT = False
@@ -27,15 +27,15 @@ else:
 class obj_tracker(object):
     def __init__(self):
         # Define the color ranges for red in HSV color space
-        self.red_lower = np.array([0, 116, 88])
-        self.red_upper = np.array([179, 255, 255])
+        self.red_lower = np.array([0, 15, 30])
+        self.red_upper = np.array([5, 250, 228])
 
         # Define the color ranges for green in HSV color space
         self.green_lower = np.array([23, 45, 13])
         self.green_upper = np.array([72, 195, 255])
 
         # Minimum contour area threshold to filter out noise
-        self.min_contour_area = 10000
+        self.min_contour_area = 2000
 
         # Initialize the ROS node
         rospy.init_node("object_tracker_node", anonymous=False)
@@ -61,8 +61,8 @@ class obj_tracker(object):
         self.bridge = CvBridge()
 
         # Define the canny edge detection parameters
-        self.thresh_lower = 50
-        self.thresh_upper = 150
+        self.thresh_lower = 10
+        self.thresh_upper = 180
         self.l2_gradient = True
 
         # Define the loop rate
@@ -330,5 +330,5 @@ class obj_tracker(object):
 
 if __name__ == "__main__":
     object_tracker_node = obj_tracker()
-    object_tracker_node.process_frames_by_canny()
-    # object_tracker_node.process_frame_by_thresholding()
+    # object_tracker_node.process_frames_by_canny()
+    object_tracker_node.process_frame_by_thresholding()
