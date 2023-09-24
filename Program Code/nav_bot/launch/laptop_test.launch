@@ -1,9 +1,0 @@
-<!-- A launch file to start a few nodes to obtain cmd_vel -->
-
-<launch>
-    <node pkg="nav_bot" type="dataset_creator.py" name="frame_grabber_node" output="screen"/>
-    <node pkg="nav_bot" type="mock_proximity.py" name="proxi_data_gen_node" output="screen"/>
-    <node pkg="nav_bot" type="object_tackr.py" name="object_tracker_node" output="screen"/>
-    <node pkg="nav_bot" type="traj_generator.py" name="trajectroy_gen_node" output="screen"/>
-    <node pkg="nav_bot" type="cmd_vel_gen.py" name="cmd_vel_pub_node" output="screen"/>
-</launch>
