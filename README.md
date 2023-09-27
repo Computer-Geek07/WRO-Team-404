@@ -36,14 +36,15 @@ An issue we faced with turning was that the proximity sensors would read out of 
 The bot stops, when it has made 12 such turns, that is to say, it has completed 3 laps around the square track.
 
 ## Obstacle Category
-TBD
+After spending some time working with the Raspberry Pi, we decided our obstacle category program would be a lot simpler using an Arduino and some form of Artificially Intelligent Camera like the HuskyLens. Our program at a conceptual level is quite simple. The HuskyLens identifies objects on screen and recognises and categorises them as Red or Green traffic signs. This information is then transmitted to the Arduino, which checks if the sign is on the correct side of the screen. For example, if the traffic sign was red, the bot would make sure it was on the left side of its screen so that the bot passes it on the sign's right. The only real issue we faced with this program was that occasionally the bot would miss traffic signs at turns, if they were outside its Field Of View during the turn. To counteract this, we wrote a script that brings the bot out of the turn, and reverses it, allowing it to read the entire straight section, ensuring we do not miss any traffic signs.
+The steering and control mechanisms are otherwise almost exactly identical to the Open Category, with a slight distinction being the turning, and the alterations to the PID code to allow the bot to avoid the obstacles.
 
 ## Compiling the code
 **Open**
 The code for the open category can be used very simply by downloading the relevant .ino files and uploading them to an Arduino Uno via the Arduino IDE. This will however also require the installation of the [MPU6050 Light library by rfetick](https://github.com/rfetick/MPU6050_light) from the arduino IDE library manager, the Wire and Servo libraries being included by default. This is of course provided that the you have already constructed a similar bot and done the electricals for the same.
 
 **Obstacle**
-TBD
+The code for the obstacle category can be used very simply by downloading the relevant .ino files and uploading them to an Arduino Uno via the Arduino IDE. This will however also require the installation of the [MPU6050 Light library by rfetick](https://github.com/rfetick/MPU6050_light) from the arduino IDE library manager and the [HuskyLens library](https://github.com/HuskyLens/HUSKYLENSArduino) from the given link, the Wire and Servo libraries being included by default. One would also have to train the HuskyLens by following the instructions [here](https://wiki.dfrobot.com/HUSKYLENS_V1.0_SKU_SEN0305_SEN0336) and training the HuskyLens to detect multiple colours, tagging Green as 1 and Red as 2. This is of course provided that the you have already constructed a similar bot and done the electricals for the same.
 
 # Electricals
 Our bot is based around the following components:
