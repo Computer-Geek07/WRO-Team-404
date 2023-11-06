@@ -31,7 +31,9 @@ In our second version of the chassis, we decided to replace the 4-bar linkage sy
 ![Open Category Program flowchart](OpenCategoryFlowChart.png "Open Category Flow Chart")
 
 Our code for the open category runs entirely on an Arduino ESP32 Nano. It receives inputs from various sensors which are combined in a simple PID controller program. For example, we use the yaw value from an MPU6050 to ensure that our bot maintains its heading parallel to the walls. We also take advantage of proximity values from our ultrasonic sensors to detect when the bot has to turn by checking if either of the proximity sensors read a value over 1 meter, which wouldn't be possible in the straight sections of the track. The sensor that has read this high value could only read it if the bot has passed the inner wall and is in a turning section. In this case, we will turn by 90 degrees towards the sensor that has read this high value.
+
 Our bot’s steering is controlled exclusively by our PID controller, even during turns. It takes the yaw value from the Inertial Measurement Unit (MPU6050 in this case) and calculates the error from what the bot's heading should be. This is then run through a standard PID controller, using only the proportional and derivative aspects to calculate the correction the bot will have to make to return to the correct heading. When taking the turns in the corner section of the track, we simply add or subtract 90 degrees from the gyro setpoint, which is the value the PID controller uses to check the bots current heading against.
+
 An issue we faced with turning was that the proximity sensors would read out of bounds multiple times during a single turn, leading to the bot's setpoint being increased by more than the 90 degrees that it should have. We overcame this issue quite simply by ensuring that the bot cannot make two turns within a set period of time, allowing us to create an extremely simple and reliable open code.
 
 
