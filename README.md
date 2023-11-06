@@ -57,16 +57,16 @@ Our bot is based around the following components:
 - L298N motor driver
 - DC-to-DC buck converter
 - MPU 6050
-- Ultrasonic sensor (URM-09)
+- Ultrasonic Sensors - URM09
 - Orange Johnson 600 RPM DC motor
-- Orange 11.1V 3 cell Lithium-Ion
+- Orange Lithium Polymer Battery 3300, mAh, 11.1 V
 - Jumper cables
 
 ### Arduino Nano ESP32
-The Arduino Nano ESP32 is the brains of our bot, despite being a microcontroller rather than a single board computer like the Raspberry Pi, it is extremely powerful and versatile, able to reliably control our bot even at very high speeds. It takes inputs from the ultrasonic sensors and controls the servo and L298N with its digital pins while communicating over I2C with the MPU6050 and the HuskyLens. The Arduino is powered by a 3.3V line for one of our DC-to-DC buck converters.
+The Arduino Nano ESP32 is the brains of our bot, despite being a microcontroller rather than a single board computer like the Raspberry Pi, it is extremely powerful and versatile, able to reliably control our bot even at very high speeds. It takes inputs from the ultrasonic sensors and controls the servo and L298N with its digital pins while communicating over I2C with the MPU6050 and the HuskyLens. The Arduino is powered by a 9V line for one of our DC-to-DC buck converters.
 
 ### HuskyLens
-The HuskyLens is an easy-to-use Artificially Intelligent camera. It has various built in features like facial recognition and object tracking. We however chose it for the incredible ease with which it could be programmed to detect and track a traffic light along with outputting its colour. It then communicates, the coordinates along with the width and height of this traffic light to our arduino via I2C. It is powered by a 3.3V line from the Arduino Nano ESP32.
+The HuskyLens is an easy-to-use Artificially Intelligent camera. It has various built-in features like facial recognition and object tracking. We however chose it for the incredible ease with which it could be programmed to detect and track a traffic light along with outputting its colour. It then communicates the coordinates along with the width and height of this traffic light to our Arduino via I2C. It is powered by a 3.3V line from the Arduino Nano ESP32.
 
 ### DS Servo
 This servo is controlled by the arduino via a PWM signal on one of its digital pins. The servo rotates to the angle given to it by the arduino and thus steers the bot. It is powered by a DC-to-DC Buck converter that steps the 12V current from the battery down the the 9V more suitable to the servo.
@@ -75,10 +75,10 @@ This servo is controlled by the arduino via a PWM signal on one of its digital p
 We are using 2 DC-to-DC buck converters to convert the 12V from the battery into both a 9V connection for the servo, and a 3.3V connection for the sensors and Arduino Nano ESP32.
 
 ### L298N motor driver and Orange 600 RPM DC motor
-We chose the orange dc motor as it had a high enough torque to move our bot while not being too slow to make a good time as well. Given that we were using a motor of this size, the L298N was the only logical choice.  We control the L298N from three digital pins on the arduino. Two of those pins use high and low signals to determine the direction of the spinning of the motor while the third relies on a PWM pin to set the speed. These get their power directly from the battery as the motor requires 12V. THe L298N also outputs 5V power that we use to power our arduino and various sensors.
+We chose the orange dc motor as it had a high enough torque to move our bot while not being too slow to make a good time as well. Given that we were using a motor of this size, the L298N was the only logical choice.  We control the L298N from three digital pins on the arduino. Two of those pins use high and low signals to determine the direction of the spinning of the motor while the third relies on a PWM pin to set the speed. These get their power directly from the battery as the motor requires 12V. 
 
 ### Ultrasonic Sensor (URM-09)
-The ultrasonic sensors are placed on either side of the bot, reading the distances from the walls the bot is travelling alongside. This allows us to detect when the bot has to turn, by reading for values over 1 meter. Each ultrasonic sensor shares its readings with the arduino using analog signals to analog in pins on the arduino. These sensors are powered from the 3.3V buck.
+The ultrasonic sensors are placed on either side of the bot, reading the distances from the walls the bot is travelling alongside. This allows us to detect when the bot has to turn, by reading for values over 1 meter. Each ultrasonic sensor shares its readings with the arduino using analog signals to analog in pins on the arduino. These sensors are powered from the 3.3V buck. There is also an Ultrasonic in the front of the bot which is used to indicate when to begin reversing during turning.
 
 ### Inertial Measurement Unit (MPU6050)
 The MPU6050 is controlled by the Arduino via an I2C connection. The MPU is used to get a yaw value helping us find the current heading of the bot and keep the bot angled correctly. It is powered from the 3.3V buck.
@@ -92,5 +92,9 @@ We also chose to solder the electronics for the bot onto a General Purpose Board
 <br>
 
 # Construction
-Our final chassis for the International round is a rear-driven, front-steering module. It consists of an independent front axle connected directly to a servo motor, as well as a differential gearbox on the fixed rear axle. The power transmission mechanism from the motor to the rear axle relies simply on the differential gearbox, the coupling such that the wheel with lower traction receives greater power and rotates at higher speeds. Thus, during turning, despite being a fixed axle, our rear will be able to prevent slippage, with the outer wheel rotating faster than the inner. The Servo used is a DS Servo model, designed to output a torque of 35Kgcm, and the DC power motor is the Orange Johnson 12 Volt 600 RPM motor. All mounts and other specialized components are 3D-printed in PLA. The belly pan of the chassis and other supporting components are CNCd and made of polycarbonate.
+Our final chassis for the International round is a rear-driven, front-steering module. It consists of an independent front axle connected directly to a servo motor, as well as a differential gearbox on the fixed rear axle. 
+
+The power transmission mechanism from the motor to the rear axle relies simply on the differential gearbox, the coupling such that the wheel with lower traction receives greater power and rotates at higher speeds. Thus, during turning, despite being a fixed axle, our rear will be able to prevent slippage, with the outer wheel rotating faster than the inner. 
+
+The Servo used is the DS-R003B 35Kg Digital Servo , and the DC power motor is the Orange Johnson 12 Volt 600 RPM motor. All mounts and other specialized components are 3D-printed in PLA. The belly pan of the chassis and other supporting components are CNCd and made of polycarbonate. 
 
