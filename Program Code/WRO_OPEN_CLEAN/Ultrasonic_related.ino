@@ -12,8 +12,6 @@ void ultrasounds() {
     // The right sensor has gone out of bounds
     // The bot has to turn right
   if (distanceRight >= OOBThresh && distanceLeft < OOBThresh) {
-    ultrasoundRightOOB = 1;
-    ultrasoundLeftOOB = 0;
     rightTurn = 1;
     leftTurn = 0;
     OOB = 1;
@@ -21,8 +19,6 @@ void ultrasounds() {
   // The left sensor has gone out of bounds
   // The bot has to turn left
    else if (distanceLeft >= OOBThresh && distanceRight < OOBThresh) {
-    ultrasoundLeftOOB = 1;
-    ultrasoundRightOOB = 0;
     leftTurn = 1;
     rightTurn = 0;
     OOB = 1;
@@ -30,8 +26,6 @@ void ultrasounds() {
   // Both sensors are within bounds
   // Bot keeps moving forward
    else  if (distanceLeft < OOBThresh && distanceRight < OOBThresh){
-    ultrasoundRightOOB = 0;
-    ultrasoundLeftOOB = 0;
     OOB = 0;
   }
   prevDistanceRight = distanceRight;

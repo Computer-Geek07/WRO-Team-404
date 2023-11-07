@@ -24,8 +24,6 @@ float distanceRight;
 float prevDistanceRight;
 float distanceLeft;
 float prevDistanceLeft;
-int ultrasoundRightOOB = 0;
-int ultrasoundLeftOOB = 0;
 int OOBThresh = 110;
 int OOB = 0;
 
